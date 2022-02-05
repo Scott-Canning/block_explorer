@@ -1,0 +1,17 @@
+extends layout 
+
+block layout-content 
+    div.View
+        h1.Banner #{network} Block Explorer 
+        div.NavButtons
+            a(href="/")
+                div.NavButton Refresh
+        div.Message
+            div.Title
+                h3 Last Block ##{blockNumber}
+                h5 Timestamp:  #{timestamp}
+                h5 Block Hash: #{blockHash}
+                h5 Transactions:
+                ul
+                    each tx, index in blockTxs
+                        li= (index + 1) + ': ' + tx.hash
