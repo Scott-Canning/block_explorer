@@ -1,0 +1,19 @@
+extends layout 
+
+block layout-content 
+    div.View
+        h1.Banner #{network} Block Explorer 
+            div.NavButtons
+                a(href="/")
+                    div.NavButton Home
+        div.Message
+            div.Title
+                h3 Transaction Hash: #{txHash}
+                h5 Block Number:     #{blockNumber}
+                h5 Confirmations:    #{confirmations}
+                h5 Data:             #{data}
+                h5 From:             #{from}
+                h5 To:               #{to}
+                h5 Gas Limit:        #{gasLimit}
+                h5 Gas Price:        #{gasPrice}
+                h5 Value:            #{value}

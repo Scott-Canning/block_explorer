@@ -2,7 +2,8 @@ const express = require('express');
 const path = require('path');
 require('dotenv').config();
 const port = process.env.PORT || "8000";
-const { getBlockNumber, getBlockDetails } = require('./ethersFunctions');
+const { getBlockNumber, getBlockDetails, getTransaction } = require('./ethersFunctions');
+const { convertTimestamp } = require('./utilities');
 
 
 // app vars
@@ -24,20 +25,57 @@ app.get("/", (req, res) => {
                 blockHash,
                 transactions } = result;
 
+        const time = convertTimestamp(timestamp);
+
         res.render("index", { title: "Block Explorer", 
                               network: "Rinkeby", 
                               blockNumber: blockNumber,
-                              timestamp: timestamp,
+                              time: time,
                               blockHash: blockHash,
                               blockTxs: transactions }); // arg0: render path off of app config; arg1: passes variable w/ definition
     }).catch(() => {
         res.render("index", { title: "Block Explorer", 
                               network: "Rinkeby",
                               blockNumber: "Network Error",
-                              blockTxs: "Network Error"}); // arg0: render path off of app config; arg1: passes variable w/ definition
+                              blockTxs: ""}); // arg0: render path off of app config; arg1: passes variable w/ definition
     });
 });
 
+app.get("/transaction", (req, res) => {
+    const txHash = req.query.txHash;
+
+    getTransaction(txHash).then((result) => {
+
+        const { blockNumber, 
+                confirmations,
+                data,
+                from,
+                to,
+                gasLimit,
+                gasPrice,
+                value
+               } = result;
+
+        res.render("transaction", { title: "Transaction",
+                                    network: "Rinkeby",
+                                    txHash: txHash,
+                                    blockNumber: blockNumber,
+                                    confirmations: confirmations,
+                                    data: data,
+                                    from: from,
+                                    to: to,
+                                    gasLimit: gasLimit,
+                                    gasPrice: gasPrice,
+                                    value: value
+                                });
+
+    }).catch(() => {
+        res.render("index", { title: "Block Explorer", 
+                                network: "Rinkeby",
+                                blockNumber: "Network Error",
+                            }); // arg0: render path off of app config; arg1: passes variable w/ definition
+    });
+});
 
 app.listen(port, () => {
     console.log(`Listening to requests on http://localhost:${port}`);
