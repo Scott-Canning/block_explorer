@@ -2,7 +2,11 @@ extends layout
 
 block layout-content 
     div.View
-        h1.Banner #{network} Block Explorer 
+        h1.Banner #{network} Block Explorer
+            form.form-signup(action="/search", method='GET') 
+                div.form-group
+                    input#name.form-control(type='text', placeholder='Search Transaction Hash', name='input')
+                button.btn.btn-lg.btn-primary.btn-block(type='submit') Search
             div.NavButtons
                 a(href="/")
                     div.NavButton Refresh

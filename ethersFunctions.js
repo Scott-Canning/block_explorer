@@ -63,8 +63,24 @@ async function getTransaction(txHash) {
     };
 }
 
+async function getAddress(address) {
+    try {
+        const balance = await provider.getBalance(address);
+        const txCount = await provider.getTransactionCount(address);
+
+        return { 
+            balance: ethers.utils.formatEther(balance),
+            txCount: txCount,
+        }
+    }
+    catch(error) {
+            logError(error);
+    };
+}
+
 module.exports = {
     getBlockNumber,
     getBlockDetails,
-    getTransaction
+    getTransaction,
+    getAddress
 }

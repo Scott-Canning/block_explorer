@@ -1,0 +1,19 @@
+extends layout 
+
+block layout-content 
+    div.View
+        h1.Banner #{network} Block Explorer 
+            div.NavButtons
+                a(href="/")
+                    div.NavButton Home
+        div.Message
+            div.Title
+            h3 Address: #{address}
+            table(style='width:100%', border='1')
+                thead
+                    tr 
+                        td Balance
+                        td #{balance}
+                    tr
+                        td Transaction Count:
+                        td #{txCount}

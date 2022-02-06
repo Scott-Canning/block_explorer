@@ -53,6 +53,21 @@ a {
   user-select: none;
 }
 
+label {
+  font-size: 20px;
+}
+
+input {
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+  /* text-align: center; */
+  height: 25px;
+  width: 500px;
+  justify-content: center;
+  box-shadow: var(--ui-shadow);
+  border-radius: 5px;
+}
+
 #root {
   display: flex;
   flex-direction: column;
@@ -112,6 +127,7 @@ a {
   line-height: 1.5em;
 }
 
+button,
 .NavButtons {
   display: flex;
   width: 100%;
@@ -120,6 +136,7 @@ a {
   padding: 10px 20px;
 }
 
+button,
 .NavButton {
   display: flex;
   justify-content: center;

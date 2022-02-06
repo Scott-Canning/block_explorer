@@ -8,12 +8,30 @@ block layout-content
                     div.NavButton Home
         div.Message
             div.Title
-                h3 Transaction Hash: #{txHash}
-                h5 Block Number:     #{blockNumber}
-                h5 Confirmations:    #{confirmations}
-                h5 Data:             #{data}
-                h5 From:             #{from}
-                h5 To:               #{to}
-                h5 Gas Limit:        #{gasLimit}
-                h5 Gas Price:        #{gasPrice}
-                h5 Value:            #{value}
+            h3 Transaction Hash: #{txHash}
+            table(style='width:100%', border='1')
+                thead
+                    tr 
+                        td Block Number:
+                        td #{blockNumber}
+                    tr
+                        td Confirmations:
+                        td #{confirmations}
+                    tr
+                        td Data:
+                        td #{data}
+                    tr
+                        td From:
+                        td #{from}
+                    tr
+                        td To:
+                        td #{to}
+                    tr
+                        td Gas Limit:
+                        td #{gasLimit}
+                    tr 
+                        td Gas Price:
+                        td #{gasPrice}
+                    tr 
+                        td Value:
+                        td #{value}
