@@ -9,6 +9,9 @@ block layout-content
         div.Message
             div.Title
             h3 Transaction Hash: #{txHash}
+            a(href='/address' + '?address=' + to)= 'To: ' + to 
+            <br/>
+            a(href='/address' + '?address=' + from)= 'From: ' + from
             table(style='width:100%', border='1')
                 thead
                     tr 
@@ -20,12 +23,12 @@ block layout-content
                     tr
                         td Data:
                         td #{data}
-                    tr
-                        td From:
-                        td #{from}
-                    tr
-                        td To:
-                        td #{to}
+                    //- tr
+                    //-     td From:
+                    //-     td #{from}
+                    //- tr
+                    //-     td To:
+                    //-     td #{to}
                     tr
                         td Gas Limit:
                         td #{gasLimit}
